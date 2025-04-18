@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Dreamr - Modern Navbar</title>
+  <!-- Tailwind CSS CDN with Dark Mode support -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+  <style>
+    /* Container width override */
+    .container { max-width: 1200px; }
+
+    /* Fixed header height so logo size won't stretch it */
+    header { height: 80px; }
+
+    /* Logo styling: overflow hidden, centered vertically */
+    .logo { height: 100%; display: flex; align-items: center; overflow: hidden; }
+    .logo img { height: auto; max-height: 100px; width: auto; }
+
+    /* Nav link modern underline effect */
+    .nav-link {
+      position: relative;
+      padding: 0 0.5rem;
+      transition: color 0.3s ease;
+      line-height: 80px; /* center text vertically in header */
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: #f70743;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+
+
+    .nav-link:hover {
+      color: #2563eb;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+      left: 0;
+    }
+    .nav-link.active { color: #2563eb; }
+
+    /* Submenu styling */
+    .nav-item { position: relative; }
+    .submenu {
+      position: absolute;
+      top: 100%;
+      margin-top: 4px;
+      left: 0;
+      background-color: white;
+      color: #333;
+      border-radius: 0.25rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: none;
+      min-width: 12rem;
+      z-index: 10;
+    }
+    .submenu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      white-space: nowrap;
+      transition: background-color 0.2s;
+    }
+    .submenu a:hover { background-color: #f3f4f6; }
+
+    /* Show submenu on hover of nav-item or submenu itself */
+    .nav-item:hover > .submenu,
+    .submenu:hover {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <!-- Navbar -->
+  <header class="bg-white dark:bg-gray-800 shadow-md">
+    <div class="container mx-auto flex items-center justify-between px-4 h-full">
+      <!-- Logo -->
+      <div class="logo flex-shrink-0">
+        <a href="/">
+          <img src="website_logo (3).gif" alt="Coding Dreamr Logo GIF">
+        </a>
+      </div>
+      <!-- Links -->
+      <nav class="hidden md:flex space-x-8">
+        <div class="nav-item">
+            <a href="#" class="nav-link">Home</a>
+            <ul class="submenu">
+              <li><a href="#">All Jobs</a></li>
+              <li><a href="#">Full-Time</a></li>
+              <li><a href="#">Part-Time</a></li>
+            </ul>
+          </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">Jobs</a>
+          <ul class="submenu">
+            <li><a href="#">All Jobs</a></li>
+            <li><a href="#">Full-Time</a></li>
+            <li><a href="#">Part-Time</a></li>
+          </ul>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">Post a Job</a>
+          <ul class="submenu">
+            <li><a href="#">All Jobs</a></li>
+            <li><a href="#">Full-Time</a></li>
+            <li><a href="#">Part-Time</a></li>
+          </ul>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">About</a>
+          <ul class="submenu">
+            <li><a href="#">All Jobs</a></li>
+            <li><a href="#">Full-Time</a></li>
+            <li><a href="#">Part-Time</a></li>
+          </ul>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">Contact</a>
+          <ul class="submenu">
+            <li><a href="#">All Jobs</a></li>
+            <li><a href="#">Full-Time</a></li>
+            <li><a href="#">Part-Time</a></li>
+          </ul>
+        </div>
+      </nav>
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+        <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293a8 8 0 01-11.586-11.586 8 8 0 1011.586 11.586z" />
+        </svg>
+        <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zM4.222 4.222a1 1 0 011.415 0L6.636 5.22a1 1 0 11-1.415 1.415L4.222 5.636a1 1 0 010-1.414zM2 10a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zm8 7a1 1 0 011-1v-1a1 1 0 10-2 0v1a1 1 0 011 1zm5.778-2.222a1 1 0 00-1.415 1.415l.999.999a1 1 0 001.415-1.415l-.999-.999zM17 10a1 1 0 00-1-1h-1a1 1 0 100 2h1a1 1 0 001-1zm-2.222-5.778a1 1 0 00-1.415 1.415l.999.999a1 1 0 001.415-1.415l-.999-.999zM10 16a6 6 0 100-12 6 6 0 000 12z" />
+        </svg>
+      </button>
+    </div>
+  </header>
+  <!-- Theme Toggle Script -->
+  <script>
+    const btn = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark'); darkIcon.classList.remove('hidden');
+    } else { lightIcon.classList.remove('hidden'); }
+    btn.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
